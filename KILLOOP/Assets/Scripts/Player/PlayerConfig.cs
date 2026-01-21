@@ -9,4 +9,9 @@ using UnityEngine;
 public class PlayerConfig : ScriptableObject
 {
     public float MoveSpeed = 6f;
+
+    [Header("Attack")]
+    public float AttackRange = 1.2f;
+    public float AttackDuration = 0.1f;
+    public float AttackCooldown = 0.25f;
 }
