@@ -9,6 +9,7 @@ public class PlayerAttack : MonoBehaviour
     private PlayerConfig _config;
 
     private bool _canAttack = true;
+    private Vector2 _lastDirection= Vector2.up;
 
     [SerializeField] private AttackHitbox _hitboxPrefab;
 
@@ -21,19 +22,23 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
+        Vector2 direction = _input.Move;
+        if (direction == Vector2.zero)
+            direction = _lastDirection;
+        else
+            _lastDirection = direction;
         if (_input.Attack && _canAttack)
         {
-            StartCoroutine(AttackRoutine());
+
+            StartCoroutine(AttackRoutine(direction));
         }
     }
 
-    private IEnumerator AttackRoutine()
+    private IEnumerator AttackRoutine(Vector2 direction)
     {
         _canAttack = false;
 
-        Vector2 direction = _input.Move;
-        if (direction == Vector2.zero)
-            direction = Vector2.up; // fallback
+        
 
         var hitbox = Instantiate(
             _hitboxPrefab,

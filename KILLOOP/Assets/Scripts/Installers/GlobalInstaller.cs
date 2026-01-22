@@ -10,6 +10,12 @@ public class GlobalInstaller : MonoInstaller
     {
         BindInput();
         BindPlayerConfig();
+        BindSceneReload();
+    }
+
+    private void BindSceneReload()
+    {
+        Container.Bind<SceneReloader>().AsSingle().NonLazy();
     }
 
     private void BindPlayerConfig()
