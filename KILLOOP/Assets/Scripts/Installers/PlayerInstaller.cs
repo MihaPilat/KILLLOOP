@@ -7,10 +7,10 @@ public class PlayerInstaller : MonoInstaller
 {
     public override void InstallBindings()
     {
-        Container.Bind<IHealth>()
-            .To<PlayerHealth>()
-            .AsSingle()
-            .NonLazy();
+
+        Container.BindInterfacesAndSelfTo<PlayerHealth>()
+            .AsSingle().NonLazy();
+
     }
 
 }
