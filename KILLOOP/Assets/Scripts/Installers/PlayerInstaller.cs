@@ -11,6 +11,9 @@ public class PlayerInstaller : MonoInstaller
         Container.BindInterfacesAndSelfTo<PlayerHealth>()
             .AsSingle().NonLazy();
 
+        Container.Bind<PlayerFacade>()
+         .FromComponentInHierarchy()
+         .AsSingle().NonLazy();
     }
 
 }
